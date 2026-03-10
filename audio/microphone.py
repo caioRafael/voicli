@@ -27,3 +27,10 @@ class Microphone:
         if hasattr(self, "stream"):
             self.stream.stop()
             self.stream.close()
+
+    def clear_queue(self):
+        while not self.queue.empty():
+            try:
+                self.queue.get_nowait()
+            except Exception:
+                break
